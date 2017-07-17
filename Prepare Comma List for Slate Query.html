@@ -1,0 +1,153 @@
+
+<html>
+<title>Make Comma-separated list</title>
+<!-- ver 0.1 by acernii 20170714 -->
+<head>
+<style>
+html {
+  box-sizing: border-box;
+  font-family: 'PT Sans', sans-serif;
+-webkit-font-smoothing: antialiased;
+}
+*, 
+*:before, 
+*:after {
+  box-sizing: inherit;
+}
+body {
+    background-color: #f3f3f3;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14pt;
+
+}
+textarea {
+    width: 100%;
+    max-width: 800px;
+   // margin: 60px auto;
+
+    font-size: 12pt;
+   // padding: 0 20px;
+    border: 2px solid #ccc;
+    width: 100%;
+    height: 30%;
+    color: #666;
+    line-height: 1;
+    border-radius: 7px;
+    font-family: 'PT Sans', sans-serif;
+}
+textarea input:focus {
+    outline: 2;
+}
+textarea input.error {
+    border-color: #ff0000;  
+}
+textarea label.error {
+    background-color: #ff0000;
+    color: #fff;
+    padding: 6px;
+    font-size: 11px;
+}
+
+label {
+    color: #999;
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.05em
+}
+textarea small {
+    color: #888;
+    font-size: 1em;
+    margin-top: 10px;
+    display: block;
+    align-self: ;
+}
+
+#tip{
+    font-color: #ccc;
+    font-size: 11pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    align-self: ;
+}
+#kbutton {
+   background-color: lightgray;
+   padding: 3px;
+   font-weight: bold;
+   display: inline;
+   border-radius: 3px;
+   border: 2px solid #ccc;
+}
+
+
+button {
+    padding: 6px;
+    font-size: 18px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    width: 150px;
+    height: 100px;
+    color: #666;
+    line-height: 1;
+    border-radius: 7px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+
+</style>
+</head>
+<body>
+This form will take your list from excel, clean up any non-digit characters, and make a comma-separated list of digits that you can use in a Slate query.
+<hr />
+<label>INPUT:</label>
+<textarea id="rawlist" rows="25" cols="15"  tabindex="-1" placeholder="paste your list here, e.g.:
+
+100370519
+100195117
+103195077
+"></textarea> 
+<br />
+<button id="goButton" tabindex="0" onclick="makeCommaList()">TRANSFORM</button>
+<p>
+<label>COMMA-SEPARATED:</label><div id="tip"></div>
+<textarea id="result" rows="5" cols="5" tabindex="1" placeholder="get the results here, e.g.:
+
+100370519,100195117,103195077
+" onclick="this.select()" readonly></textarea> 
+</p>
+
+<script>
+//TODO: modularize
+
+let myoutput = document.getElementById("result");
+let list = '';
+
+function showtip (){
+  document.getElementById("tip").innerHTML = 'Press <div id="kbutton">CTRL</div> + <div id="kbutton">C</div> to copy';
+  }
+
+
+function makeCommaList () {
+
+  let regx = /\D/gim;
+
+  list = document.getElementById("rawlist").value.trim();
+  
+  if (( list === null ) || ( list  === '' ))
+    return false
+  else 
+    myoutput.innerHTML = list.replace(regx,",").replace(/,,*/gim,",").replace(/^,/,"").replace(/$,/,"");
+    console.log("makeCommaList() run \n\n-------------------input:--------------------\n" + list + "\n\n-------------------output:-------------------\n" + myoutput.innerHTML)
+    myoutput.focus();
+    myoutput.select();
+    showtip();
+    
+  return true
+}
+
+</script>
+</body>
+</html>
