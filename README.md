@@ -1,3 +1,3 @@
 Playground for Slate stuff.
 
-[List of MTQ participants](/list_mtq.html)
+[List of MTQ participants](show_mtq.html)
