@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Latest MTQ list</title>
+<!-- <script type="text/javascript" src="/media/js/site.js?_=88b8e26b7e3dd4eee69f199f9880a0e0"> -->
+	<!-- </script> -->
+	<!-- <script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fdata_sources%2Fjs_array.html" async></script> -->
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<!-- <script type="text/javascript" language="javascript" src="../resources/demo.js"> -->
+	<!-- </script> -->
+<style src="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></style>	
+</head>
+<body>
+
+Here's the MTQ list:
+<hr />
+<script>
+let dataSet; 
+
+
+
+
+function myCallbackFunction(data) { 
+	dataSet = data;
+return data }
+
+</script>
+
+
+<!-- <script src="https://slate/manage/query/process?id={id}&h={hash}&output=json&callback=myCallbackFunction"></script> -->
+<script src="https://apply.aubg.edu/manage/query/run?id=a6159db2-0981-489d-a543-6a26d99445d4&h=af2bee33-8567-bb28-ab35-dda61034a616&cmd=service&output=json&callback=myCallbackFunction">
+</script>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        ajax: dataSet
+    } );
+} );
+</script>
+
+<div id="data-list">
+
+
+</div>
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Birthdate</th>
+                <th>Citizenship</th>
+                <th>Email</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Mobile</th>
+				<th>pid</th>
+            </tr>
+        </thead>
+
+    </table>
+
+</body>
+</html>
